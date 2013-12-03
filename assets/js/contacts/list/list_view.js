@@ -13,7 +13,8 @@ ContactManager.module("ContactsApp.List", function(List, ContactManager, Backbon
            events: {
                "click": "highlightName",
                "click button.js-delete": "deleteRow",
-               "click td a.js-show": "showClicked"
+               "click td a.js-show": "showClicked",
+               "click td a.js-edit": "editClicked"
            },
            showClicked: function(e){
                e.preventDefault();
@@ -25,6 +26,11 @@ ContactManager.module("ContactsApp.List", function(List, ContactManager, Backbon
                this.trigger("contact:delete", this.model);
               // this.model.collection.remove(this.model);
 
+           },
+           editClicked: function(e){
+               e.preventDefault();
+               e.stopPropagation();
+               this.trigger("contact:edit", this.model);
            },
            highlightName: function(e) {
                e.preventDefault();
